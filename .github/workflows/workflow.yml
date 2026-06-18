@@ -25,3 +25,8 @@ jobs:
       #   run: |
       #     pip install nose
       #     nosetests 
+
+      - name: Pytest check
+        run: |
+          pip install pytest
+          pytest
