@@ -1,0 +1,27 @@
+name: Testing for CI on coursera IBM
+
+on: 
+  push:
+    branches: ["main"]
+
+jobs:
+  CodeQualityCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code repository
+        uses: actions/checkout@v3
+      
+      - name: Set up python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      
+      - name: flake8 check
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Nose test check
+        run: |
+          pip install nose
+          nosetests 
